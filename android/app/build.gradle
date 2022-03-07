@@ -43,7 +43,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        minSdkVersion 19 
+        // minSdkVersion 2 
+        // targetSdkVersion 32
         multiDexEnabled true
         applicationId "com.example.first_sell"
         minSdkVersion flutter.minSdkVersion
@@ -80,3 +81,4 @@ dependencies {
   // https://firebase.google.com/docs/android/setup#available-libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+apply plugin: 'com.google.gms.google-services'
