@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:first_sell/const/app_color.dart';
+import 'package:first_sell/ui/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,6 +13,16 @@ class SplahScreen extends StatefulWidget {
 }
 
 class _SplahScreenState extends State<SplahScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const Login_screen())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
