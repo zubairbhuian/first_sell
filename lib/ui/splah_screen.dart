@@ -30,9 +30,8 @@ class _SplahScreenState extends State<SplahScreen> {
             ),
             const CircularProgressIndicator(
               color: Colors.white,
-            ),
-            const LinearProgressIndicator(
-              minHeight: 10,
+              strokeWidth: 5,
+              semanticsLabel: 'Linear progress indicator',
             )
           ],
         ),
