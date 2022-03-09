@@ -17,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Container(
             height: 170,
-            color: Colors.green,
             alignment: Alignment.bottomLeft,
             child: const Padding(
               padding: EdgeInsets.only(bottom: 35, left: 20),
@@ -26,6 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.black,
+              height: 300,
             ),
           )
         ],
