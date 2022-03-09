@@ -171,7 +171,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 1.sw,
                         height: 56.h,
                         child: ElevatedButton(
-                            onPressed: () {}, child: const Text("Sign In")),
+                          onPressed: () {},
+                          child: const Text("Sign In"),
+                          style: ElevatedButton.styleFrom(
+                              primary: AppColors.deep_orange),
+                        ),
                       ),
                       SizedBox(
                         height: 20.h,
