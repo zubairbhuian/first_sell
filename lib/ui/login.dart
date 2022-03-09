@@ -167,9 +167,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      ElevatedButton(
-                        
-                          onPressed: () {}, child: const Text("Sign In")),
+                      SizedBox(
+                        width: 1.sw,
+                        height: 56.h,
+                        child: ElevatedButton(
+                            onPressed: () {}, child: const Text("Sign In")),
+                      ),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -180,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFFBBBBBB),
+                              color: const Color(0xFFBBBBBB),
                             ),
                           ),
                           GestureDetector(
