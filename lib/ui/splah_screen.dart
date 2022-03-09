@@ -20,7 +20,7 @@ class _SplahScreenState extends State<SplahScreen> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const Login_screen())));
+            context, MaterialPageRoute(builder: (_) => const LoginScreen())));
   }
 
   @override
