@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController  _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
   @override
@@ -205,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                   context,
                                   CupertinoPageRoute(
-                                      builder: (_) => SignUpScreen()));
+                                      builder: (_) => const SignUpScreen()));
                             },
                           )
                         ],
