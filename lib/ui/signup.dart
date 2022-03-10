@@ -1,17 +1,15 @@
 import 'package:first_sell/const/app_color.dart';
-import 'package:first_sell/ui/signup.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
@@ -27,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.only(bottom: 35.w, left: 20.w),
-              child: Text("Sign In",
+              child: Text("Sign Up",
                   style: TextStyle(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
@@ -174,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 56.h,
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: const Text("Sign In"),
+                          child: const Text("Sign Up"),
                           style: ElevatedButton.styleFrom(
                               primary: AppColors.deep_orange),
                         ),
@@ -194,19 +192,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           GestureDetector(
                             child: Text(
-                              " Sign Up",
+                              " Sign in",
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.deep_orange,
                               ),
                             ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  CupertinoPageRoute(
-                                      builder: (_) => SignUpScreen()));
-                            },
+                            onTap: () {},
                           )
                         ],
                       )
