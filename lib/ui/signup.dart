@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_sell/const/app_color.dart';
 import 'package:first_sell/ui/login.dart';
+import 'package:first_sell/ui/user_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,6 +18,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
+
+  signUp() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailController.text, password: _passwordController.text);
+      var authCredentional = userCredential.user;
+      print(authCredentional!.uid);
+      if (authCredentional.uid.isNotEmpty) {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => UserForm()));
+      } else {
+        Fluttertoast.showToast(
+            msg: "Some thing is rong", backgroundColor: AppColors.deep_orange);
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        Fluttertoast.showToast(msg: "The password provided is too weak.");
+      } else if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: "The account already exists for that email",
+            backgroundColor: AppColors.deep_orange);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 20.h,
                       ),
                       Text(
-                        "Welcome Back",
+                        "Welcome Buddy",
                         style: TextStyle(
                             fontSize: 22.sp, color: AppColors.deep_orange),
                       ),
@@ -173,7 +203,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: 1.sw,
                         height: 56.h,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            signUp();
+                          },
                           child: const Text("Sign Up"),
                           style: ElevatedButton.styleFrom(
                               primary: AppColors.deep_orange),
@@ -205,7 +237,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.push(
                                   context,
                                   CupertinoPageRoute(
-                                      builder: (_) =>const LoginScreen()));
+                                      builder: (_) => const LoginScreen()));
                             },
                           )
                         ],
