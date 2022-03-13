@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_sell/ui/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../const/app_color.dart';
 
@@ -17,6 +21,43 @@ class _UserFormState extends State<UserForm> {
   final TextEditingController _genderController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   List<String> gender = ["Male", "Female", "Other"];
+
+  Future<void> _selectDateFromPicker(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime(DateTime.now().year - 20),
+      firstDate: DateTime(DateTime.now().year - 30),
+      lastDate: DateTime(DateTime.now().year),
+    );
+    if (picked != null) {
+      setState(() {
+        _dobController.text = "${picked.day}/ ${picked.month}/ ${picked.year}";
+      });
+    }
+  }
+
+  sendUserDataToDb() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var curentUser = _auth.currentUser;
+
+    CollectionReference _collentionRef =
+        FirebaseFirestore.instance.collection("users-forms-data");
+    return _collentionRef
+        .doc(curentUser!.email)
+        .set({
+          "name": _nameController.text,
+          "phone": _phoneController.text,
+          "dob": _dobController.text,
+          "gender": _genderController.text,
+          "age": _ageController.text,
+        })
+        .then((value) => Fluttertoast.showToast(
+            msg: 'You have submitted', backgroundColor: AppColors.deep_orange))
+        .then((value) => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const HomeScreen())))
+        .catchError((err) => print(err));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +81,7 @@ class _UserFormState extends State<UserForm> {
                   "We will not share your information with anyone.",
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: Color(0xFFBBBBBB),
+                    color: const Color(0xFFBBBBBB),
                   ),
                 ),
                 SizedBox(
@@ -67,7 +108,9 @@ class _UserFormState extends State<UserForm> {
                   decoration: InputDecoration(
                     hintText: "date of birth",
                     suffixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _selectDateFromPicker(context);
+                      },
                       icon: const Icon(Icons.calendar_today_outlined),
                     ),
                   ),
@@ -107,7 +150,10 @@ class _UserFormState extends State<UserForm> {
                 SizedBox(
                     width: 1.sw,
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text("Container")))
+                        onPressed: () {
+                          sendUserDataToDb();
+                        },
+                        child: const Text("Container")))
               ],
             ),
           ),
