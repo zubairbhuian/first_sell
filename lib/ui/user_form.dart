@@ -48,6 +48,19 @@ class _UserFormState extends State<UserForm> {
                 ),
                 // myTextField("enter your name",TextInputType.text,_nameController),
                 // myTextField("enter your phone number",TextInputType.number,_phoneController),
+                // Form Start Here
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: "Full Name",
+                  ),
+                ),
+                TextField(
+                  controller: _phoneController,
+                  decoration: const InputDecoration(
+                    hintText: "Phone Number",
+                  ),
+                ),
                 TextField(
                   controller: _dobController,
                   readOnly: true,
@@ -68,7 +81,7 @@ class _UserFormState extends State<UserForm> {
                       items: gender.map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: new Text(value),
+                          child: Text(value),
                           onTap: () {
                             setState(() {
                               _genderController.text = value;
@@ -81,9 +94,9 @@ class _UserFormState extends State<UserForm> {
                   ),
                 ),
                 // myTextField("enter your age",TextInputType.number,_ageController),
-                const TextField(
-                  readOnly: true,
-                  decoration: InputDecoration(hintText: "enter your age"),
+                TextField(
+                  controller: _ageController,
+                  decoration: const InputDecoration(hintText: "Age"),
                 ),
                 SizedBox(
                   height: 50.h,
