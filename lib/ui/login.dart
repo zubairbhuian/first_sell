@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_sell/const/app_color.dart';
-import 'package:first_sell/ui/homeScreen.dart';
+import 'package:first_sell/ui/navigation_pages/homeScreen.dart';
 import 'package:first_sell/ui/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
