@@ -19,10 +19,30 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-bottomNavigationBar: BottomNavigationBar(
-  items: [],
-),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.yellow,
+        selectedLabelStyle:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              tooltip: 'Home',
+              backgroundColor: Colors.grey),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              tooltip: 'Favorite',
+              backgroundColor: Colors.grey),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_shopping_cart),
+              tooltip: 'Card',
+              backgroundColor: Colors.grey),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              tooltip: 'Profile',
+              backgroundColor: Colors.grey),
+        ],
+      ),
     );
   }
 }
