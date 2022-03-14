@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_sell/ui/navigation_pages/homeScreen.dart';
+import 'package:first_sell/ui/bottom_navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -54,7 +54,7 @@ class _UserFormState extends State<UserForm> {
         .then((value) => Fluttertoast.showToast(
             msg: 'You have submitted', backgroundColor: AppColors.deep_orange))
         .then((value) => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const HomeScreen())))
+            context, MaterialPageRoute(builder: (_) => const HomeNavigationBar())))
         .catchError((err) => print(err));
   }
 
